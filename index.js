@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const middleware = require('@warren-bank/hls-proxy/hls-proxy/proxy')({
     is_secure:                false,
     host:                     null,
@@ -21,9 +22,8 @@ const middleware = require('@warren-bank/hls-proxy/hls-proxy/proxy')({
   })
 
 const app = express()
-
+app.use(cors())
 const port = 8080
-
 
 
 app.get('/proxy/*', middleware.request)
